@@ -18,7 +18,7 @@ function login($user,$password){
 	
 	if(isset($_COOKIE['userid'])){
 	echo "<center>You are already logged in</center>";
-	header( "refresh:2;url=../index.php" );
+	header( "refresh:2;url=index.php" );
 	}
 	
 	$sqlquery="SELECT id,firstname,lastname FROM users WHERE username='$user' AND password='$password'";
@@ -28,7 +28,7 @@ function login($user,$password){
 	
 	if($rows==1){
 		setcookie('userid',$data['id'],time()+3600);
-		header( "refresh:2;url=../index.php" );
+		header( "refresh:2;url=index.php" );
 		return "<center>Sucessfully logged in as ".getUserObj($data['id'])->firstname." ".getUserObj($data['id'])->lastname."...<br> Redirecting!</center>";
 	}
 	else{
@@ -43,7 +43,7 @@ function login($user,$password){
 				return "<center>Password is incorrect!</center>";
 			}
 		}
-		header( "refresh:2;url=../index.php" );
+		header( "refresh:2;url=index.php" );
 	}
 
 }
@@ -51,7 +51,7 @@ function login($user,$password){
 function logout(){
 	if(isset($_COOKIE['userid'])){
 	setcookie("userid", "", time()-3600);
-	header( "refresh:2;url=../index.php" );
+	header( "refresh:2;url=index.php" );
 	return "<center>Thank You... Redirecting!</center>";
 	}
 	else return "<center> You aren't logged in... Redirecting</center>";
